@@ -13,3 +13,11 @@ after_success:
   - docker build -t ozguruyar/multi-nginx ./nginx
   - docker build -t ozguruyar/multi-server ./server
   - docker build -t ozguruyar/multi-worker ./worker
+
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Push images to docker hub
+  - docker push  ozguruyar/multi-client
+  - docker push  ozguruyar/multi-nginx
+  - docker push  ozguruyar/multi-server
+  - docker push  ozguruyar/multi-worker
