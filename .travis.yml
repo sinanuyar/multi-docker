@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t ozguruyar/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t sinanuyar/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true ozguruyar/react-test npm test
+  - docker run -e CI=true sinanuyar/react-test npm test
 
 after_success:
-  - docker build -t ozguruyar/multi-client ./client
-  - docker build -t ozguruyar/multi-nginx ./nginx
-  - docker build -t ozguruyar/multi-server ./server
-  - docker build -t ozguruyar/multi-worker ./worker
+  - docker build -t sinanuyar/multi-client ./client
+  - docker build -t sinanuyar/multi-nginx ./nginx
+  - docker build -t sinanuyar/multi-server ./server
+  - docker build -t sinanuyar/multi-worker ./worker
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to docker hub
-  - docker push  ozguruyar/multi-client
-  - docker push  ozguruyar/multi-nginx
-  - docker push  ozguruyar/multi-server
-  - docker push  ozguruyar/multi-worker
+  - docker push  sinanuyar/multi-client
+  - docker push  sinanuyar/multi-nginx
+  - docker push  sinanuyar/multi-server
+  - docker push  sinanuyar/multi-worker
