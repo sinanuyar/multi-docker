@@ -21,3 +21,15 @@ after_success:
   - docker push  sinanuyar/multi-nginx
   - docker push  sinanuyar/multi-server
   - docker push  sinanuyar/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker-training"
+  env: "Multidockertraining-env"
+  bucket_name: "elasticbeanstalk-us-east-1-386914680837"
+  bucket_path: "multi-docker-training"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
